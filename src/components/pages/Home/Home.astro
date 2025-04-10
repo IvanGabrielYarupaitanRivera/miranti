@@ -1,0 +1,66 @@
+---
+import { ArrowRight, CheckCircle } from "@lucide/astro";
+---
+
+<section
+  class="relative min-h-screen flex items-center justify-center overflow-hidden"
+>
+  <!-- Imagen de fondo difuminada -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src="https://static.vecteezy.com/system/resources/previews/030/663/503/large_2x/brown-background-high-quality-free-photo.jpg"
+      alt="Artesanos peruanos trabajando"
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm"></div>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="relative z-10 w-full max-w-4xl px-6 md:px-4 mx-auto">
+    <!-- Logo -->
+    <img src="/favicon.svg" alt="Miranti" class="h-14 md:h-20 mx-auto mb-8" />
+
+    <!-- Tarjeta principal con glasmorfismo refinado -->
+    <div
+      class="bg-white/15 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl p-6 md:p-10"
+    >
+      <!-- Encabezado -->
+      <header class="mb-10 md:mb-12 text-center">
+        <h1 class="text-3xl lg:text-5xl font-bold text-white mb-6">
+          Conecta tu arte con el mundo
+        </h1>
+
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          Crea fácilmente un catálogo digital y vende desde cualquier lugar del
+          Perú
+        </p>
+      </header>
+
+      <!-- Acciones principales -->
+      <main
+        class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 lg:gap-6 w-full max-w-2xl mx-auto"
+      >
+        <!-- Botón CTA -->
+        <a
+          href="/registro"
+          class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-secondary hover:bg-secondary/90 text-primary font-bold py-3 sm:py-4 px-6 sm:px-8 lg:px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl border border-white/20 text-base sm:text-lg lg:text-xl"
+        >
+          Comienza gratis
+          <ArrowRight
+            size={20}
+            stroke-width={2.5}
+            class="group-hover:translate-x-0.5 transition-transform"
+          />
+        </a>
+
+        <!-- Sello cultural -->
+        <div
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-sm rounded-full py-3 sm:py-4 px-6 sm:px-8 text-white border border-white/20 ring-1 ring-white/10 transition-all duration-300 hover:bg-white/15 text-base sm:text-lg"
+        >
+          <CheckCircle size={20} color="#fec71a" />
+          <span class="font-medium">100% hecho en Perú</span>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
