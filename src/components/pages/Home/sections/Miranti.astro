@@ -1,0 +1,174 @@
+---
+import { Star, Globe, Smartphone, Heart, Users, Trophy, Truck, Search, UsersIcon, Wallet, MapPin, ShoppingBag, MessageSquare } from "@lucide/astro";
+
+// Datos para las tarjetas
+const cardData = [
+  {
+    image: "/miranti/card-1.jpg",
+    icon: Star,
+    title: "Acceso Simplificado",
+    content:
+      "Crea tu catálogo digital en minutos con Miranti, sin necesidad de conocimientos técnicos avanzados. Optimizado para carga rápida de fotos desde tu celular.",
+  },
+  {
+    image: "/miranti/card-2.jpg",
+    icon: Globe,
+    title: "Mayor Visibilidad",
+    content:
+      "Aumenta tu alcance a nuevos mercados en todo el Perú y potencialmente en el extranjero, conectando con compradores locales, nacionales e internacionales a través de Miranti.",
+  },
+  {
+    image: "/miranti/card-3.jpg",
+    icon: Smartphone,
+    title: "Optimización para Realidades Diversas",
+    content:
+      "La plataforma Miranti funciona bien incluso con internet limitado. Diseñada con enfoque móvil para adaptarse a diversas realidades de conectividad en todo el Perú.",
+  },
+  {
+    image: "/miranti/card-4.jpg",
+    icon: Heart,
+    title: "Soporte Cercano",
+    content:
+      "Miranti ofrece acompañamiento adaptado a la diversidad cultural y lingüística, con asistencia técnica en lenguaje sencillo y programas de formación virtual.",
+  },
+  {
+    image: "/miranti/card-5.jpg",
+    icon: MessageSquare,
+    title: "Integración con WhatsApp",
+    content:
+      "Miranti se integra con herramientas familiares como WhatsApp para facilitar la comunicación directa entre artesanos y compradores, simplificando la gestión de consultas y pedidos.",
+  },
+  {
+    image: "/miranti/card-6.jpg",
+    icon: ShoppingBag,
+    title: "Gestión de Pedidos Centralizada",
+    content:
+      "Con Miranti, administra todos tus pedidos desde un sistema centralizado, permitiéndote mantener un control eficiente de tus ventas y entregas.",
+  },
+  {
+    image: "/miranti/card-7.jpg",
+    icon: MapPin,
+    title: "Visibilidad Regional",
+    content:
+      "Destaca el origen de tus productos y cuenta tu historia a través de Miranti, conectando compradores con la rica diversidad cultural y artesanal de todas las regiones del Perú.",
+  },
+  {
+    image: "/miranti/card-8.jpg",
+    icon: Wallet,
+    title: "Métodos de Pago Locales",
+    content:
+      "Miranti integra soluciones de pago populares en Perú como Yape, Plin y transferencias bancarias, facilitando transacciones seguras adaptadas a la realidad nacional.",
+  },
+  {
+    image: "/miranti/card-9.jpg",
+    icon: Search,
+    title: "Búsqueda Avanzada",
+    content:
+      "Los compradores pueden encontrar fácilmente tus productos en Miranti gracias a sistemas de búsqueda y filtros por región, tipo de producto, técnica artesanal y más.",
+  },
+  {
+    image: "/miranti/card-10.jpg",
+    icon: UsersIcon,
+    title: "Comunidad Digital Peruana",
+    content:
+      "Forma parte de la comunidad Miranti que valora y promueve la diversidad cultural y productiva del Perú, fortaleciendo economías locales y preservando tradiciones.",
+  },
+  {
+    image: "/miranti/card-11.jpg",
+    icon: Truck,
+    title: "Soluciones de Logística",
+    content:
+      "Miranti facilita información sobre envíos y posibles alianzas con couriers de cobertura nacional, brindando claridad sobre costos y responsabilidades de logística.",
+  },
+  {
+    image: "/miranti/card-12.jpg",
+    icon: Trophy,
+    title: "Impacto Social Positivo",
+    content:
+      "Al usar Miranti, contribuyes directamente al desarrollo económico sostenible y al reconocimiento del talento artesanal peruano en todo el mundo.",
+  },
+];
+---
+
+<section id="quees" class="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+  <!-- Fondo con glasmorfismo -->
+  <div class="absolute inset-0 bg-background backdrop-blur-sm"></div>
+
+  <!-- Contenido principal -->
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="flex flex-col items-center text-center mb-12">
+      <!-- Ícono de Miranti -->
+      <img
+        src="/miranti/icon-black.svg"
+        alt="Miranti"
+        class="h-16 md:h-24 mb-6"
+      />
+
+      <!-- Encabezado con palabras destacadas -->
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6   max-w-2xl  "
+      >
+        <span class="text-secondary-dark">Conectando</span> artesanos con el
+        <span class="text-secondary-dark">mercado digital</span> en todo el
+        <span class="text-secondary-dark">Perú</span>
+      </h2>
+
+      <!-- Línea decorativa -->
+      <div class="w-24 h-1 bg-secondary-dark rounded-full mb-8"></div>
+    </div>
+
+    <!-- Descripción introductoria -->
+    <div class="max-w-4xl mx-auto mb-16 text-center">
+      <p class="text-lg md:text-xl text-primary">
+        Miranti es una plataforma web diseñada para cerrar la brecha digital de
+        los artesanos y pequeños productores en todo el Perú, ofreciendo una
+        solución ligera, intuitiva y optimizada para conexiones variables.
+      </p>
+    </div>
+
+        <!-- Grid de tarjetas -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8   mx-auto">
+    {cardData.map((card) => (
+      <div class="bg-white backdrop-blur-md rounded-xl border border-white/20 shadow-xl ring-1 ring-white/30 overflow-hidden flex flex-col h-full transform transition-transform hover:scale-[1.02]">
+        <!-- Contenedor de imagen con padding -->
+        <div class="px-4 pt-4 relative">
+          <div class="rounded-xl overflow-hidden">
+            <img
+              src={card.image}
+              alt={card.title}
+              class="w-full h-48 object-cover"
+            />
+          </div>
+          <!-- Ícono superpuesto -->
+          <div class="absolute -bottom-5 right-5 bg-secondary rounded-full p-3 shadow-lg border border-white/30">
+            <card.icon size={24} stroke-width={2} class="text-primary" />
+          </div>
+        </div>
+        
+        <!-- Contenido de la tarjeta -->
+        <div class="p-6 pt-8 flex-1 flex flex-col">
+          <h3 class="text-xl md:text-2xl font-serif font-bold text-primary mb-4">
+            {card.title}
+          </h3>
+          <p class="text-primary/90 flex-1">
+            {card.content}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+      
+      <!-- CTA final -->
+      <div class="mt-16 text-center">
+        <a 
+          href="#comofunciona" 
+          class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-primary font-bold py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 border border-white/30 text-lg"
+        >
+          Descubre cómo funciona
+          <Users size={20} stroke-width={2} />
+        </a>
+      </div>
+
+
+  </div>
+</section>

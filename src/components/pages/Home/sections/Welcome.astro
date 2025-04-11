@@ -9,6 +9,14 @@ import {
   ShoppingBag,
   Star,
   Leaf,
+  Smartphone,
+  MapPin,
+  Flag,
+  Wallet,
+  Scissors,
+  Brush,
+  Apple,
+  Handshake,
 } from "@lucide/astro";
 
 // Array de textos para las pastillas
@@ -21,6 +29,14 @@ const textBadges = [
   "Tradición digital",
   "Cultura que trasciende",
   "Economía local sostenible",
+  "Visibilidad digital",
+  "Emprendimientos locales",
+  "Identidad peruana",
+  "Ventas simplificadas",
+  "Artesanía ancestral",
+  "Diseño contemporáneo",
+  "Productos orgánicos",
+  "Comercio justo",
 ];
 
 // Array de íconos para pastillas
@@ -33,6 +49,14 @@ const iconComponents = [
   ShoppingBag,
   Star,
   Leaf,
+  Smartphone,
+  MapPin,
+  Flag,
+  Wallet,
+  Scissors,
+  Brush,
+  Apple,
+  Handshake,
 ];
 
 // Crear array combinado para intercalar texto e iconos
@@ -40,56 +64,42 @@ const combinedItems = [];
 const maxLength = Math.max(textBadges.length, iconComponents.length);
 
 for (let i = 0; i < maxLength; i++) {
-  if (i < textBadges.length) {
+  if (i < textBadges.length)
     combinedItems.push({ type: "text", content: textBadges[i] });
-  }
-  if (i < iconComponents.length) {
+  if (i < iconComponents.length)
     combinedItems.push({ type: "icon", content: iconComponents[i] });
-  }
 }
+
+// Repetimos el array para asegurar un flujo continuo
+const repeatedItems = [...combinedItems, ...combinedItems, ...combinedItems];
+
+// Duración de la animación basada en la cantidad de elementos
+const animationDuration = "60s";
 ---
 
-<section class="py-8 md:py-12 relative overflow-hidden">
-  <!-- Fondo con glasmorfismo sutil -->
-  <div class="absolute inset-0 bg-background/50 backdrop-blur-sm"></div>
+<section class="relative overflow-hidden">
+  <!-- Fondo con glasmorfismo -->
+  <div class="absolute inset-0 bg-background backdrop-blur-sm"></div>
 
   <!-- Contenido principal -->
-  <div class="relative z-10 overflow-hidden w-full">
+  <div class="relative z-10 w-full">
     <h2 class="sr-only">Bienvenidos a Miranti</h2>
 
-    <!-- Contenedor de marquee infinito -->
-    <div class="relative flex overflow-x-hidden">
-      <!-- Primera instancia del marquee -->
+    <!-- Contenedor del marquee mejorado -->
+    <div class="marquee-wrapper overflow-hidden relative">
+      <!-- Contenido del marquee -->
       <div
-        class="animate-marquee whitespace-nowrap flex items-center gap-4 md:gap-6 will-change-transform"
+        class="marquee flex items-center gap-4 md:gap-6 will-change-transform"
+        style={`--marquee-duration: ${animationDuration};`}
       >
         {
-          combinedItems.map((item) =>
+          repeatedItems.map((item, index) =>
             item.type === "text" ? (
-              <span class="badge bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary/30 shadow-md ring-1 ring-white/20 whitespace-nowrap">
+              <span class="bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary  shadow-md   whitespace-nowrap flex-shrink-0">
                 {item.content}
               </span>
             ) : (
-              <span class="badge bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary/30 shadow-md ring-1 ring-white/20 flex items-center justify-center w-12 h-12">
-                <item.content size={20} stroke-width={2} class="text-primary" />
-              </span>
-            )
-          )
-        }
-      </div>
-
-      <!-- Segunda instancia del marquee para animación continua -->
-      <div
-        class="animate-marquee2 whitespace-nowrap flex items-center gap-4 md:gap-6 absolute top-0 will-change-transform"
-      >
-        {
-          combinedItems.map((item) =>
-            item.type === "text" ? (
-              <span class="badge bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary/30 shadow-md ring-1 ring-white/20 whitespace-nowrap">
-                {item.content}
-              </span>
-            ) : (
-              <span class="badge bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary/30 shadow-md ring-1 ring-white/20 flex items-center justify-center w-12 h-12">
+              <span class="bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary  shadow-md flex items-center justify-center w-12 h-12 flex-shrink-0">
                 <item.content size={20} stroke-width={2} class="text-primary" />
               </span>
             )
@@ -101,29 +111,42 @@ for (let i = 0; i < maxLength; i++) {
 </section>
 
 <style>
-  @keyframes marquee {
+  /* Contenedor del marquee */
+  .marquee-wrapper {
+    width: 100%;
+  }
+
+  /* Animación del marquee */
+  .marquee {
+    display: flex;
+    animation: scroll-x var(--marquee-duration, 60s) linear infinite;
+    width: max-content; /* Permite que tome el ancho necesario */
+  }
+
+  /* Animación de desplazamiento horizontal infinito */
+  @keyframes scroll-x {
     0% {
-      transform: translateX(0%);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(
+        calc(-50% - 1rem)
+      ); /* Ajuste para sincronización perfecta */
     }
   }
 
-  @keyframes marquee2 {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(0%);
-    }
+  /* Pausa al hacer hover */
+  .marquee-wrapper:hover .marquee {
+    animation-play-state: paused;
   }
 
-  .animate-marquee {
-    animation: marquee 30s linear infinite;
-  }
-
-  .animate-marquee2 {
-    animation: marquee2 30s linear infinite;
+  /* Accesibilidad */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee {
+      animation: none;
+      width: 100%;
+      overflow-x: auto;
+      justify-content: flex-start;
+    }
   }
 </style>

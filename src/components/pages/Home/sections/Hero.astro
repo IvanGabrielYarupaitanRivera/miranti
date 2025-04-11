@@ -1,17 +1,14 @@
 ---
-import { ArrowRight, CheckCircle, ChevronDown } from "@lucide/astro";
+import { ArrowRight, ChevronDown } from "@lucide/astro";
 ---
 
 <section
-  class="relative py-48 w-full flex items-center justify-center overflow-hidden"
+  class="relative pt-48 pb-72 w-full flex items-center justify-center overflow-hidden bg-background"
 >
-  <!-- Imagen de fondo difuminada -->
-  <div class="absolute inset-0 z-0">
-    <img
-      src="/public/miranti/pattern.png"
-      alt="Artesanos peruanos trabajando"
-      class="w-full h-full object-cover"
-    />
+  <!-- Imagen de fondo difuminada con máscara -->
+  <div
+    class="absolute inset-0 z-0 bg-[url(/miranti/pattern.png)] bg-cover mask-b-from-70% mask-b-to-100%"
+  >
     <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm"></div>
   </div>
 
