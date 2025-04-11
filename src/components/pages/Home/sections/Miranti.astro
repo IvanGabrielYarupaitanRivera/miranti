@@ -1,87 +1,101 @@
 ---
 import { Star, Globe, Smartphone, Heart, Users, Trophy, Truck, Search, UsersIcon, Wallet, MapPin, ShoppingBag, MessageSquare } from "@lucide/astro";
+import { Image } from 'astro:assets';
+import accesoSimplificado from "../../../../assets/images/miranti/acceso-simplificado.webp";
+import mayorVisibilidad from "../../../../assets/images/miranti/mayor-visibilidad.webp";
+import optimizacionRealidades from "../../../../assets/images/miranti/optimizacion-realidades.webp";
+import soporteCercano from "../../../../assets/images/miranti/soporte-cercano.webp";
+import integracionWhatsApp from "../../../../assets/images/miranti/integracion-whatsapp.webp";
+import gestionPedidos from "../../../../assets/images/miranti/gestion-pedidos.webp";
+import visibilidadRegional from "../../../../assets/images/miranti/visibilidad-regional.webp";
+import metodosPagoLocales from "../../../../assets/images/miranti/metodos-pago-locales.webp";
+import busquedaAvanzada from "../../../../assets/images/miranti/busqueda-avanzada.webp";
+import comunidadDigital from "../../../../assets/images/miranti/comunidad-digital.webp";
+import solucionesLogistica from "../../../../assets/images/miranti/soluciones-logistica.webp";
+import impactoSocial from "../../../../assets/images/miranti/impacto-social-positivo.webp";
+
 
 // Datos para las tarjetas
 const cardData = [
   {
-    image: "https://media.licdn.com/dms/image/v2/C4E12AQGHV0NPyBVy9Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1566116118391?e=2147483647&v=beta&t=ZvV8ahuBDMeQYzIkiXrb1V2qEQuvy8X9msQkYvOXHRU",
+    image: accesoSimplificado,
     icon: Star,
     title: "Acceso Simplificado",
     content:
       "Crea tu catálogo digital en minutos con Miranti, sin necesidad de conocimientos técnicos avanzados. Optimizado para carga rápida de fotos desde tu celular.",
   },
   {
-    image: "https://media.licdn.com/dms/image/v2/C4E12AQGHV0NPyBVy9Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1566116118391?e=2147483647&v=beta&t=ZvV8ahuBDMeQYzIkiXrb1V2qEQuvy8X9msQkYvOXHRU",
+    image: mayorVisibilidad,
     icon: Globe,
     title: "Mayor Visibilidad",
     content:
       "Aumenta tu alcance a nuevos mercados en todo el Perú y potencialmente en el extranjero, conectando con compradores locales, nacionales e internacionales a través de Miranti.",
   },
   {
-    image: "https://media.licdn.com/dms/image/v2/C4E12AQGHV0NPyBVy9Q/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1566116118391?e=2147483647&v=beta&t=ZvV8ahuBDMeQYzIkiXrb1V2qEQuvy8X9msQkYvOXHRU",
+    image: optimizacionRealidades,
     icon: Smartphone,
     title: "Optimización para Realidades Diversas",
     content:
       "La plataforma Miranti funciona bien incluso con internet limitado. Diseñada con enfoque móvil para adaptarse a diversas realidades de conectividad en todo el Perú.",
   },
   {
-    image: "/miranti/card-4.jpg",
+    image: soporteCercano,
     icon: Heart,
     title: "Soporte Cercano",
     content:
       "Miranti ofrece acompañamiento adaptado a la diversidad cultural y lingüística, con asistencia técnica en lenguaje sencillo y programas de formación virtual.",
   },
   {
-    image: "/miranti/card-5.jpg",
+    image: integracionWhatsApp,
     icon: MessageSquare,
     title: "Integración con WhatsApp",
     content:
       "Miranti se integra con herramientas familiares como WhatsApp para facilitar la comunicación directa entre artesanos y compradores, simplificando la gestión de consultas y pedidos.",
   },
   {
-    image: "/miranti/card-6.jpg",
+    image: gestionPedidos,
     icon: ShoppingBag,
     title: "Gestión de Pedidos Centralizada",
     content:
       "Con Miranti, administra todos tus pedidos desde un sistema centralizado, permitiéndote mantener un control eficiente de tus ventas y entregas.",
   },
   {
-    image: "/miranti/card-7.jpg",
+    image:visibilidadRegional,
     icon: MapPin,
     title: "Visibilidad Regional",
     content:
       "Destaca el origen de tus productos y cuenta tu historia a través de Miranti, conectando compradores con la rica diversidad cultural y artesanal de todas las regiones del Perú.",
   },
   {
-    image: "/miranti/card-8.jpg",
+    image:metodosPagoLocales,
     icon: Wallet,
     title: "Métodos de Pago Locales",
     content:
       "Miranti integra soluciones de pago populares en Perú como Yape, Plin y transferencias bancarias, facilitando transacciones seguras adaptadas a la realidad nacional.",
   },
   {
-    image: "/miranti/card-9.jpg",
+    image: busquedaAvanzada,
     icon: Search,
     title: "Búsqueda Avanzada",
     content:
       "Los compradores pueden encontrar fácilmente tus productos en Miranti gracias a sistemas de búsqueda y filtros por región, tipo de producto, técnica artesanal y más.",
   },
   {
-    image: "/miranti/card-10.jpg",
+    image:comunidadDigital,
     icon: UsersIcon,
     title: "Comunidad Digital Peruana",
     content:
       "Forma parte de la comunidad Miranti que valora y promueve la diversidad cultural y productiva del Perú, fortaleciendo economías locales y preservando tradiciones.",
   },
   {
-    image: "/miranti/card-11.jpg",
+    image: solucionesLogistica,
     icon: Truck,
     title: "Soluciones de Logística",
     content:
       "Miranti facilita información sobre envíos y posibles alianzas con couriers de cobertura nacional, brindando claridad sobre costos y responsabilidades de logística.",
   },
   {
-    image: "/miranti/card-12.jpg",
+    image: impactoSocial,
     icon: Trophy,
     title: "Impacto Social Positivo",
     content:
@@ -136,7 +150,7 @@ const cardData = [
         <!-- Contenedor de imagen con padding -->
         <div class="px-4 pt-4 relative">
           <div class="rounded-2xl overflow-hidden">
-            <img
+            <Image
               src={card.image}
               alt={card.title}
               class="w-full h-48 object-cover"
