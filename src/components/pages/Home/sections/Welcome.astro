@@ -1,0 +1,129 @@
+---
+// Welcome.astro - Sección de bienvenida con pastillas alternadas de palabras e íconos
+import {
+  Sparkles,
+  Globe,
+  Palette,
+  Clock,
+  Heart,
+  ShoppingBag,
+  Star,
+  Leaf,
+} from "@lucide/astro";
+
+// Array de textos para las pastillas
+const textBadges = [
+  "Bienvenidos a Miranti",
+  "Conectamos artesanos",
+  "Arte peruano al mundo",
+  "Catálogos en minutos",
+  "Hecho en Perú",
+  "Tradición digital",
+  "Cultura que trasciende",
+  "Economía local sostenible",
+];
+
+// Array de íconos para pastillas
+const iconComponents = [
+  Sparkles,
+  Globe,
+  Palette,
+  Clock,
+  Heart,
+  ShoppingBag,
+  Star,
+  Leaf,
+];
+
+// Crear array combinado para intercalar texto e iconos
+const combinedItems = [];
+const maxLength = Math.max(textBadges.length, iconComponents.length);
+
+for (let i = 0; i < maxLength; i++) {
+  if (i < textBadges.length) {
+    combinedItems.push({ type: "text", content: textBadges[i] });
+  }
+  if (i < iconComponents.length) {
+    combinedItems.push({ type: "icon", content: iconComponents[i] });
+  }
+}
+---
+
+<section class="py-8 md:py-12 relative overflow-hidden">
+  <!-- Fondo con glasmorfismo sutil -->
+  <div class="absolute inset-0 bg-background/50 backdrop-blur-sm"></div>
+
+  <!-- Contenido principal -->
+  <div class="relative z-10 overflow-hidden w-full">
+    <h2 class="sr-only">Bienvenidos a Miranti</h2>
+
+    <!-- Contenedor de marquee infinito -->
+    <div class="relative flex overflow-x-hidden">
+      <!-- Primera instancia del marquee -->
+      <div
+        class="animate-marquee whitespace-nowrap flex items-center gap-4 md:gap-6 will-change-transform"
+      >
+        {
+          combinedItems.map((item) =>
+            item.type === "text" ? (
+              <span class="badge bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary/30 shadow-md ring-1 ring-white/20 whitespace-nowrap">
+                {item.content}
+              </span>
+            ) : (
+              <span class="badge bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary/30 shadow-md ring-1 ring-white/20 flex items-center justify-center w-12 h-12">
+                <item.content size={20} stroke-width={2} class="text-primary" />
+              </span>
+            )
+          )
+        }
+      </div>
+
+      <!-- Segunda instancia del marquee para animación continua -->
+      <div
+        class="animate-marquee2 whitespace-nowrap flex items-center gap-4 md:gap-6 absolute top-0 will-change-transform"
+      >
+        {
+          combinedItems.map((item) =>
+            item.type === "text" ? (
+              <span class="badge bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary/30 shadow-md ring-1 ring-white/20 whitespace-nowrap">
+                {item.content}
+              </span>
+            ) : (
+              <span class="badge bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary/30 shadow-md ring-1 ring-white/20 flex items-center justify-center w-12 h-12">
+                <item.content size={20} stroke-width={2} class="text-primary" />
+              </span>
+            )
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes marquee2 {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee2 {
+    animation: marquee2 30s linear infinite;
+  }
+</style>
