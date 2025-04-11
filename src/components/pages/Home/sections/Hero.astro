@@ -1,103 +1,53 @@
 ---
-import { ArrowRight, CheckCircle } from "@lucide/astro";
+import { ArrowRight, CheckCircle, ChevronDown } from "@lucide/astro";
 ---
 
 <section
-  class="relative min-h-screen flex items-center justify-center overflow-hidden"
+  class="relative py-48 w-full flex items-center justify-center overflow-hidden"
 >
   <!-- Imagen de fondo difuminada -->
   <div class="absolute inset-0 z-0">
     <img
-      src="https://static.vecteezy.com/system/resources/previews/030/663/503/large_2x/brown-background-high-quality-free-photo.jpg"
+      src="/public/miranti/pattern.png"
       alt="Artesanos peruanos trabajando"
       class="w-full h-full object-cover"
     />
     <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm"></div>
   </div>
 
-  <!-- Contenedor principal con mejor estructura -->
-  <div class="relative z-10 w-full max-w-5xl px-5 md:px-8 mx-auto mt-36">
-    <!-- Logo con mejor posicionamiento -->
-    <div class="flex justify-center mb-10 md:mb-12">
-      <img
-        src="/favicon.svg"
-        alt="Miranti"
-        class="h-16 md:h-24 filter drop-shadow-lg"
-      />
-    </div>
-
-    <!-- Tarjeta principal con glasmorfismo mejorado -->
-    <div
-      class="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl ring-1 ring-white/30 overflow-hidden"
+  <!-- Contenido principal -->
+  <div class="relative z-10 w-full max-w-5xl px-5 md:px-8 mx-auto text-center">
+    <!-- Título principal - texto grande sin transparencia -->
+    <h1
+      class="text-4xl md:text-6xl lg:text-7xl text-gray-100 mb-12 md:mb-16 font-serif"
     >
-      <!-- Banner decorativo superior estilo Notion -->
-      <div class="h-2 bg-secondary"></div>
+      <span class="text-secondary"> Conecta </span>
+      tu arte con el Perú,
+      <span class="text-secondary"> transforma</span>
+      tu pasión en oportunidades y
+      <span class="text-secondary"> lleva </span>
+      tus creaciones a un mercado nacional.
+    </h1>
 
-      <!-- Contenido interno con espaciado optimizado -->
-      <div class="p-8 sm:p-10 md:p-12 lg:p-16">
-        <!-- Encabezado con tipografía refinada -->
-        <header class="mb-12 md:mb-14 lg:mb-16 text-center">
-          <h1
-            class="text-4xl md:text-5xl font-extrabold text-white mb-6 md:mb-8"
-          >
-            <span
-              class="bg-gradient-to-b from-white via-white to-secondary bg-clip-text text-transparent relative"
-              >Conecta tu arte con el mundo
-            </span>
-          </h1>
+    <!-- Botón principal -->
+    <a
+      href="/registro"
+      class="group inline-flex items-center justify-center gap-3 bg-secondary hover:bg-secondary/90 text-primary font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-white/30 text-xl"
+    >
+      Comienza gratis
+      <ArrowRight
+        size={22}
+        stroke-width={2.5}
+        class="group-hover:translate-x-1 transition-transform duration-300"
+      />
+    </a>
 
-          <p
-            class="text-lg md:text-xl text-white/95 max-w-2xl mx-auto leading-relaxed font-light"
-          >
-            Crea fácilmente un catálogo digital y vende desde cualquier lugar
-            del Perú
-          </p>
-        </header>
-
-        <!-- Acciones principales con disposición mejorada -->
-        <div class="space-y-10 md:space-y-12 w-full max-w-xl mx-auto">
-          <!-- Grupo de botones CTA -->
-          <div
-            class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
-          >
-            <!-- Botón CTA principal -->
-            <a
-              href="/registro"
-              class="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-secondary/90 via-secondary to-secondary/90 text-primary font-bold py-3.5 px-8 md:px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-[1.02] border border-white/30 text-base md:text-lg relative overflow-hidden"
-            >
-              <span class="relative z-10">Comienza gratis</span>
-              <ArrowRight
-                size={20}
-                stroke-width={2.5}
-                class="group-hover:translate-x-1 transition-transform duration-300 relative z-10"
-              />
-              <span
-                class="absolute inset-0 rounded-full bg-white/10 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              ></span>
-            </a>
-
-            <!-- Botón secundario -->
-            <a
-              href="#como-funciona"
-              class="group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur-sm hover:bg-white/15 text-white font-medium py-3.5 px-8 md:px-10 rounded-full transition-all duration-300 shadow-md hover:shadow-lg border border-white/20 text-base md:text-lg"
-            >
-              Ver cómo funciona
-            </a>
-          </div>
-
-          <!-- Nota con sello de garantía -->
-          <div class="flex flex-col items-center space-y-4">
-            <!-- Sello cultural -->
-            <div
-              class="inline-flex items-center justify-center gap-2.5 px-5 py-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-white/90 text-xs md:text-sm"
-            >
-              <div class="p-1 bg-secondary/20 rounded-full">
-                <CheckCircle size={16} color="#fec71a" />
-              </div>
-              <span class="font-medium">100% hecho en Perú</span>
-            </div>
-          </div>
-        </div>
+    <!-- Indicador sutil de scroll -->
+    <div class="mt-16 md:mt-20 flex justify-center cursor-pointer">
+      <div
+        class="bg-black/70 backdrop-blur-md rounded-full border border-white/20 shadow-lg ring-1 ring-white/30 flex items-center justify-between py-4 px-4 animate-bounce"
+      >
+        <ChevronDown size={22} stroke-width={2} class="text-white" />
       </div>
     </div>
   </div>
