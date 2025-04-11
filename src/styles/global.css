@@ -1,7 +1,26 @@
 @import "tailwindcss";
 
 @theme {
+  --font-serif: "Noto Serif", "serif";
+  --font-sans: "Rubik", "sans-serif";
+
   --color-primary: #312000;
   --color-secondary: #fec71a;
   --color-background: #ebe5c2;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Noto Serif";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/public/fonts/noto-serif.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Rubik";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/public/fonts/rubik.woff2") format("woff2");
 }
