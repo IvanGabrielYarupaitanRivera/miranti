@@ -1,0 +1,182 @@
+---
+import {
+  Cloud,
+  Wifi,
+  MapPin,
+  Languages,
+  Star,
+  Smartphone,
+  Globe,
+  HeartHandshake,
+  Coins,
+  Wallet,
+} from "@lucide/astro";
+
+// Array de problemas con sus íconos
+const problems = [
+  {
+    icon: Cloud,
+    title: "Falta de acceso a e-commerce",
+    description:
+      "Las plataformas existentes resultan complejas y costosas para los artesanos. Los requisitos técnicos superan los conocimientos promedio del sector artesanal. La brecha digital limita severamente las oportunidades de crecimiento económico y visibilidad de sus productos.",
+  },
+  {
+    icon: Wifi,
+    title: "Limitaciones de infraestructura",
+    description:
+      "El acceso a internet estable varía enormemente entre regiones del país. Las zonas rurales sufren especialmente de conectividad baja, intermitente o inexistente. Esta realidad dificulta e imposibilita el uso de plataformas digitales convencionales para el comercio.",
+  },
+  {
+    icon: MapPin,
+    title: "Dependencia de mercados físicos",
+    description:
+      "Los artesanos dependen casi exclusivamente de ferias locales y turismo estacional. Esta limitación reduce drásticamente la visibilidad de sus productos artesanales. El alcance restringido a clientes potenciales minimiza las oportunidades de crecimiento sostenible y ganancias económicas.",
+  },
+  {
+    icon: Languages,
+    title: "Barreras idiomáticas y técnicas",
+    description:
+      "La terminología técnica del comercio digital resulta confusa para muchos artesanos. La diversidad lingüística del país (castellano, quechua, aimara) complica la adopción tecnológica. Los interfaces no consideran la pluralidad cultural ni los conocimientos previos del usuario.",
+  },
+  {
+    icon: Wallet,
+    title: "Costos prohibitivos de digitalización",
+    description:
+      "Los gastos de creación y mantenimiento de tiendas virtuales son inaccesibles para pequeños productores. Las comisiones por transacción reducen significativamente los márgenes de ganancia. Las inversiones iniciales representan un riesgo financiero imposible para economías de subsistencia.",
+  },
+];
+
+// Array de soluciones con sus íconos
+const solutions = [
+  {
+    icon: Star,
+    title: "Acceso simplificado a lo digital",
+    description:
+      "Miranti ofrece una interfaz intuitiva que requiere mínimos conocimientos técnicos. El proceso permite crear catálogos digitales completos en minutos, no en días. La curva de aprendizaje mínima elimina barreras para cualquier nivel de alfabetización digital.",
+  },
+  {
+    icon: Smartphone,
+    title: "Optimización para realidades diversas",
+    description:
+      "Nuestra plataforma funciona con bajo consumo de datos, ideal para zonas con conectividad limitada. El diseño responde incluso a dispositivos básicos, los más accesibles en zonas rurales. La arquitectura ligera permite usar la aplicación incluso con una seña baja.",
+  },
+  {
+    icon: Globe,
+    title: "Mayor visibilidad y alcance",
+    description:
+      "Los artesanos expanden su mercado potencial a nivel nacional e internacional sin intermediarios. La plataforma conecta directamente con clientes interesados en productos auténticos y artesanales. El alcance digital rompe las barreras geográficas que tradicionalmente limitaban las ventas.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Soporte cercano y adaptado",
+    description:
+      "Proporcionamos asistencia técnica en lenguaje sencillo y culturalmente apropiado para cada región. Nuestros materiales de apoyo respetan la diversidad lingüística del Perú. El acompañamiento continuo garantiza una adopción exitosa incluso para usuarios sin experiencia digital.",
+  },
+  {
+    icon: Coins,
+    title: "Modelo accesible y sostenible",
+    description:
+      "La estructura de costos se adapta a la realidad económica de pequeños productores peruanos. Eliminamos inversiones iniciales prohibitivas que impedían la digitalización. Las comisiones justas permiten que los beneficios lleguen realmente a las comunidades artesanales.",
+  },
+];
+---
+
+<section id="problmes" class="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+  <div class="absolute inset-0 bg-background"></div>
+
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="flex flex-col items-center text-center mb-12">
+      <!-- Ícono de Miranti -->
+      <img
+        src="/miranti/icon-black.svg"
+        alt="Miranti"
+        class="h-16 md:h-24 mb-6"
+      />
+
+      <!-- Encabezado con palabras destacadas -->
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6 max-w-2xl"
+      >
+        Identificamos los <span class="text-secondary-dark">Problemas</span> y Creamos
+        <span class="text-secondary-dark">Soluciones</span>
+      </h2>
+
+      <!-- Línea decorativa -->
+      <div class="w-24 h-1 bg-secondary-dark rounded-full mb-8"></div>
+    </div>
+
+    <!-- Descripción introductoria -->
+    <div class="max-w-4xl mx-auto mb-16 text-center">
+      <p class="text-lg md:text-xl text-primary/80">
+        Los artesanos y pequeños productores peruanos enfrentan grandes desafíos
+        para digitalizarse. Conocemos sus dificultades y hemos desarrollado
+        respuestas efectivas que transforman obstáculos en oportunidades,
+        permitiéndoles conectar con mercados locales e internacionales.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+      <!-- Columna de problemas -->
+      <div class="space-y-6 md:space-y-8">
+        <div class="flex items-center justify-center mb-8">
+          <div
+            class="bg-primary backdrop-blur-sm rounded-full py-2 px-8 border border-primary/10 shadow-md"
+          >
+            <h3 class="text-2xl md:text-3xl font-serif text-background">
+              Los Desafíos
+            </h3>
+          </div>
+        </div>
+
+        {
+          problems.map((item, index) => (
+            <div class="bg-white  backdrop-blur-md rounded-xl border border-white/20 shadow-xl ring-1 ring-white/30 p-6 flex gap-4 items-start transform transition-all hover:scale-[1.02]">
+              <div class="bg-primary/20 rounded-full p-3 flex-shrink-0">
+                <item.icon size={24} stroke-width={2} class="text-primary" />
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <h4 class="font-bold text-primary">{item.title}</h4>
+                </div>
+                <p class="text-primary/80 text-sm md:text-base text-pretty">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Columna de soluciones -->
+      <div class="space-y-6 md:space-y-8">
+        <div class="flex items-center justify-center mb-8">
+          <div
+            class="bg-secondary backdrop-blur-sm rounded-full py-2 px-8 border border-secondary/30 shadow-md"
+          >
+            <h3 class="text-2xl md:text-3xl font-serif text-primary">
+              Miranti Responde
+            </h3>
+          </div>
+        </div>
+
+        {
+          solutions.map((item, index) => (
+            <div class="bg-white  backdrop-blur-md rounded-xl border border-white/20 shadow-xl ring-1 ring-white/30 p-6 flex gap-4 items-start transform transition-all hover:scale-[1.02]">
+              <div class="bg-secondary/20 rounded-full p-3 flex-shrink-0">
+                <item.icon size={24} stroke-width={2} class="text-secondary" />
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <h4 class="font-bold text-primary">{item.title}</h4>
+                </div>
+                <p class="text-primary/80 text-sm md:text-base text-pretty">
+                  {item.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
