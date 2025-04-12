@@ -1,5 +1,38 @@
 ---
-import { Menu, X, HelpCircle, Settings, MessageCircle } from "@lucide/astro";
+import { Menu, HelpCircle, Settings, MessageCircle } from "@lucide/astro";
+import MobileMenu from "./MobileMenu.astro";
+import NavLink from "./NavLink.astro";
+
+// Definición centralizada de los elementos de navegación
+const navItems = [
+  {
+    href: "#quees",
+    text: "¿Qué es Miranti?",
+    icon: HelpCircle,
+    iconSize: 18,
+    iconStrokeWidth: 2
+  },
+  {
+    href: "#comofunciona",
+    text: "Cómo Funciona",
+    icon: Settings,
+    iconSize: 18,
+    iconStrokeWidth: 2
+  },
+  {
+    href: "#testimonios",
+    text: "Testimonios",
+    icon: MessageCircle,
+    iconSize: 18,
+    iconStrokeWidth: 2
+  }
+];
+
+// Elemento CTA (Call-to-Action)
+const ctaItem = {
+  href: "#unete",
+  text: "Únete a Miranti"
+};
 ---
 
 <header class="fixed top-4 left-0 right-0 z-50 mx-auto w-full max-w-7xl px-4">
@@ -13,116 +46,28 @@ import { Menu, X, HelpCircle, Settings, MessageCircle } from "@lucide/astro";
       <img src="/miranti/name.svg" alt="Miranti" class="h-6 md:h-8" />
     </a>
 
-    <!-- Menú desktop -->
+  <!-- Menú desktop -->
     <div class="hidden lg:flex items-center gap-2 lg:gap-4">
-      <a
-        href="#quees"
-        class="text-white hover:text-secondary px-3 py-2 rounded-full transition-colors"
-      >
-        ¿Qué es Miranti?
-      </a>
-      <a
-        href="#comofunciona"
-        class="text-white hover:text-secondary px-3 py-2 rounded-full transition-colors"
-      >
-        Cómo Funciona
-      </a>
-      <a
-        href="#testimonios"
-        class="text-white hover:text-secondary px-3 py-2 rounded-full transition-colors"
-      >
-        Testimonios
-      </a>
-      <a
-        href="#unete"
-        class="bg-secondary/90 hover:bg-secondary text-primary font-medium px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg border border-white/20"
-      >
-        Únete a Miranti
-      </a>
+      {navItems.map(item => (
+        <NavLink href={item.href} text={item.text} />
+      ))}
+      <NavLink href={ctaItem.href} text={ctaItem.text} isHighlighted={true} />
     </div>
 
-    <!-- Menú móvil - Botón toggle -->
+  <!-- Menú móvil - Botón toggle -->
     <button
       id="menu-toggle"
       class="lg:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú de navegación"
     >
       <Menu size={24} stroke-width={2} />
     </button>
   </nav>
 
-  <!-- Menú móvil - Contenido expandible -->
-  <div
-    id="mobile-menu"
-    class="hidden lg:hidden absolute top-full left-0 right-0 mt-3 mx-4 overflow-hidden"
-  >
-    <div
-      class="bg-black/70 backdrop-blur-md rounded-4xl border border-white/20 shadow-xl ring-1 ring-white/30 p-5 transform transition-all duration-300"
-    >
-      <!-- Encabezado del menú -->
-      <div
-        class="flex justify-between items-center pb-3 border-b border-white/10"
-      >
-        <h3 class="text-white font-medium flex items-center gap-2">
-          <span>Menú</span>
-        </h3>
-        <button
-          id="menu-close"
-          class="text-white p-2 rounded-full hover:bg-white/10 active:bg-white/20 transition-colors"
-        >
-          <X size={20} stroke-width={2} />
-        </button>
-      </div>
-
-      <!-- Enlaces de navegación -->
-      <div class="flex flex-col gap-2 mt-3">
-        <a
-          href="#quees"
-          class="text-white hover:bg-white/10 active:bg-white/15 px-4 py-3 rounded-xl transition-all flex items-center gap-3"
-        >
-          <div
-            class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"
-          >
-            <HelpCircle size={18} stroke-width={2} class="text-secondary" />
-          </div>
-          <span>¿Qué es Miranti?</span>
-        </a>
-
-        <a
-          href="#comofunciona"
-          class="text-white hover:bg-white/10 active:bg-white/15 px-4 py-3 rounded-xl transition-all flex items-center gap-3"
-        >
-          <div
-            class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"
-          >
-            <Settings size={18} stroke-width={2} class="text-secondary" />
-          </div>
-          <span>Cómo Funciona</span>
-        </a>
-
-        <a
-          href="#testimonios"
-          class="text-white hover:bg-white/10 active:bg-white/15 px-4 py-3 rounded-xl transition-all flex items-center gap-3"
-        >
-          <div
-            class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center"
-          >
-            <MessageCircle size={18} stroke-width={2} class="text-secondary" />
-          </div>
-          <span>Testimonios</span>
-        </a>
-      </div>
-
-      <!-- CTA - Botón destacado -->
-      <div class="mt-5 pt-4 border-t border-white/10 w-full flex">
-        <a
-          href="#unete"
-          class="bg-secondary/90 hover:bg-secondary text-primary font-medium px-5 py-2 rounded-full transition-all shadow-md hover:shadow-lg border border-white/20 w-full my-2 text-center"
-        >
-          <span>Únete a Miranti</span>
-        </a>
-      </div>
-    </div>
-  </div>
+  <!-- Componente del menú móvil -->
+  <MobileMenu navItems={navItems} ctaItem={ctaItem} />
 </header>
 
 <script>
@@ -130,13 +75,49 @@ import { Menu, X, HelpCircle, Settings, MessageCircle } from "@lucide/astro";
     const menuToggle = document.getElementById("menu-toggle");
     const menuClose = document.getElementById("menu-close");
     const mobileMenu = document.getElementById("mobile-menu");
+    const navLinks = mobileMenu?.querySelectorAll("a");
+    
+    // Función para controlar la apertura/cierre del menú
+    function toggleMenu(isOpen: boolean) {
+      if (!mobileMenu || !menuToggle) return;
+      
+      // Actualizar visibilidad del menú
+      if (isOpen) {
+        mobileMenu.classList.remove("hidden");
+      } else {
+        mobileMenu.classList.add("hidden");
+      }
+      
+      // Actualizar atributos ARIA
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      
+      // Manejar el foco
+      if (isOpen && navLinks && navLinks.length > 0) {
+        // Mover el foco al primer elemento del menú cuando se abre
+        setTimeout(() => {
+          navLinks[0].focus();
+        }, 100);
+      }
+    }
 
+    // Controladores de eventos
     menuToggle?.addEventListener("click", () => {
-      mobileMenu?.classList.toggle("hidden");
+      const isCurrentlyHidden = mobileMenu?.classList.contains("hidden") ?? false;
+      toggleMenu(isCurrentlyHidden);
     });
 
     menuClose?.addEventListener("click", () => {
-      mobileMenu?.classList.add("hidden");
+      toggleMenu(false);
+      // Devolver el foco al botón de toggle
+      menuToggle?.focus();
+    });
+    
+    // Cerrar el menú con tecla ESC
+    mobileMenu?.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        toggleMenu(false);
+        menuToggle?.focus();
+      }
     });
   });
 </script>
