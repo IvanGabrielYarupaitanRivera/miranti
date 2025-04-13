@@ -193,8 +193,8 @@ const renderStars = (rating: number) => {
     anchor-name: --carousel;
     display: flex;
     gap: 20px;
-    padding: 20px 40px;
-    mask: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    padding: 0px 20px 0px 0px;
+     
 
     &::-webkit-scrollbar {
       display: none;
@@ -208,53 +208,63 @@ const renderStars = (rating: number) => {
   }
 
   .carousel {
-  &::scroll-button(*) {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-200%); 
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(8px);
-    z-index: 10;
-    transition: all 0.3s ease;
+    &::scroll-button(*) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-200%); 
+        background-color: var(--color-secondary);
+        color: var(--color-primary);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+        z-index: 10;
+        transition: all 0.3s ease;
 
-    &:hover {
-      transform: translateY(-50%) scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+         
+
+        &:hover {
+        transform: translateY(-50%) scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        &:active {
+        transform: translateY(-50%) scale(0.95);
+        }
+        
     }
-    
-    &:active {
-      transform: translateY(-50%) scale(0.95);
-    }
-     
-  }
 
   &::scroll-button(right) {
     position-area: inline-end center;
     right: 30px; /* Posición desde el borde derecho */
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23312000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-icon lucide-arrow-big-right"><path d="M6 9h6V5l7 7-7 7v-4H6V9z"/></svg>') / 'Siguiente';
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
   }
 
   &::scroll-button(left) {
     position-area: inline-start center;
     left: 30px; /* Posición desde el borde izquierdo */
     content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23312000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-left-icon lucide-arrow-big-left"><path d="M18 15h-6v4l-7-7 7-7v4h6v6z"/></svg>') / 'Anterior';
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
   }
-}
+   }
 
   .carousel {
     scroll-marker-group: after;
