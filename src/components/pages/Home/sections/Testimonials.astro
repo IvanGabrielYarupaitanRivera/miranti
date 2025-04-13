@@ -189,7 +189,7 @@ const renderStars = (rating: number) => {
     overflow-x: auto;
     overscroll-behavior-x: contain;
     scroll-snap-type: x mandatory;
-     scroll-behavior: smooth;
+    scroll-behavior: smooth;
     anchor-name: --carousel;
     display: flex;
     gap: 20px;
@@ -211,46 +211,42 @@ const renderStars = (rating: number) => {
     &::scroll-button(*) {
         position: absolute;
         top: 50%;
-        transform: translateY(-200%); 
-        background-color: var(--color-secondary);
-        color: var(--color-primary);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        transform: translateY(-200%);  
         border-radius: 50%;
         width: 50px;
         height: 50px;
         display: flex;
         align-items: center;
-        justify-content: center; 
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        justify-content: center;  
         backdrop-filter: blur(8px);
         z-index: 10;
         transition: all 0.3s ease;
-
-         
-
-        &:hover {
-        transform: translateY(-50%) scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        &:active {
-        transform: translateY(-50%) scale(0.95);
-        }
-        
+        cursor: pointer;    
+        background-color: var(--color-secondary );
+        border-color: var(--color-secondary );
     }
 
-  &::scroll-button(right) {
+    &::scroll-button(*):active {
+        cursor: progress
+    }
+
+    &::scroll-button(*):disabled  {
+        opacity: 0.1;
+        cursor: unset;
+    }
+
+    &::scroll-button(right) {
     position-area: inline-end center;
-    right: 30px; /* Posición desde el borde derecho */
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23312000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-icon lucide-arrow-big-right"><path d="M6 9h6V5l7 7-7 7v-4H6V9z"/></svg>') / 'Siguiente';
-    display: none;
-    align-items: center;
-    justify-content: center;
+        right: 30px; /* Posición desde el borde derecho */
+        content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23312000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-icon lucide-arrow-big-right"><path d="M6 9h6V5l7 7-7 7v-4H6V9z"/></svg>') / 'Siguiente';
+        display: none;
+        align-items: center;
+        justify-content: center;
 
-    @media (min-width: 1024px) {
-      display: flex;
+        @media (min-width: 1024px) {
+        display: flex;
+        }
     }
-  }
 
   &::scroll-button(left) {
     position-area: inline-start center;
@@ -285,13 +281,16 @@ const renderStars = (rating: number) => {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: rgba(49, 32, 0, 0.3);
+      background-color: var(--color-secondary);
+      
 
-      &:target-current {
-        background: var(--color-secondary);
-      }
+    }
+
+    & > li::scroll-marker:target-current {
+        background-color: black;
+        }
 
        
-    }
+    
   }
 </style>
