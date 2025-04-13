@@ -1,0 +1,287 @@
+---
+import { Users, Star, Quote } from "@lucide/astro";
+import { Image } from "astro:assets";
+
+// Datos de testimonios de artesanos
+const testimonials = [
+  {
+    id: 1,
+    name: "María Huamán",
+    role: "Tejedora de Chinchero, Cusco",
+    image: "/miranti/testimonials/maria.webp",
+    content:
+      "Antes solo vendía mis textiles cuando venían turistas a mi comunidad. Con Miranti, ahora tengo clientes de Lima y hasta del extranjero que me contactan directamente por WhatsApp. Mis ventas aumentaron un 40% en solo tres meses.",
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Juan Quispe",
+    role: "Ceramista de Quinua, Ayacucho",
+    image: "/miranti/testimonials/juan.webp",
+    content:
+      "Mi señal de internet es muy débil, pero igual pude crear mi catálogo en Miranti. La plataforma carga rápido y no consume muchos datos. Ahora mis iglesias de cerámica llegan a todo el Perú sin tener que viajar a ferias.",
+    rating: 4,
+  },
+  {
+    id: 3,
+    name: "Rosa Mamani",
+    role: "Bordadora de Puno",
+    image: "/miranti/testimonials/rosa.webp",
+    content:
+      "Lo que más me gusta de Miranti es que puedo actualizar mi catálogo fácilmente desde mi celular. El soporte técnico me ayudó en mi idioma cuando tuve dudas al principio. Ha sido una bendición para mostrar mis bordados al mundo.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Carlos Huayna",
+    role: "Tallador de madera, Cusco",
+    image: "/miranti/testimonials/carlos.webp",
+    content:
+      "Llevo 30 años tallando máscaras tradicionales, pero solo vendía en ferias locales. Gracias a Miranti, ahora exporto a galerías de arte en Estados Unidos y España. La plataforma me ha permitido mostrar el proceso artesanal que hace único cada trabajo.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Lucía Flores",
+    role: "Orfebre de plata, Cajamarca",
+    image: "/miranti/testimonials/lucia.webp",
+    content:
+      "Como mujer artesana en un campo dominado por hombres, me costaba ser reconocida. Con mi catálogo en Miranti, mis joyas de plata filigrana están llegando a clientes que valoran el trabajo manual. La plataforma es tan simple que hasta mi abuela podría usarla.",
+    rating: 4,
+  },
+  {
+    id: 6,
+    name: "Pedro Condori",
+    role: "Ceramista de Chulucanas, Piura",
+    image: "/miranti/testimonials/pedro.webp",
+    content:
+      "Mi cerámica negra de Chulucanas necesitaba llegar a más personas. Con Miranti no solo aumenté mis ventas, también conecté con otros artesanos para intercambiar técnicas. He podido mantener vivo este arte ancestral y sostener económicamente a mi familia.",
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: "Ana Palomino",
+    role: "Productora de chocolate orgánico, San Martín",
+    image: "/miranti/testimonials/ana.webp",
+    content:
+      "Nuestro chocolate artesanal ahora llega a restaurantes de Lima gracias a Miranti. Lo que más aprecio es que puedo actualizar rápidamente el stock desde mi celular cuando estoy en la chacra donde cultivamos el cacao. ¡Nuestra producción ha crecido un 70%!",
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: "Miguel Sánchez",
+    role: "Artesano de mates burilados, Junín",
+    image: "/miranti/testimonials/miguel.webp",
+    content:
+      "Cada mate burilado cuenta una historia, y Miranti me permite explicar esos detalles a mis clientes. Mi hijo me ayudó a crear el catálogo, y ahora recibimos pedidos personalizados para regalos corporativos. La plataforma funciona bien incluso con la señal limitada de nuestra comunidad.",
+    rating: 4,
+  },
+];
+
+// Función para generar estrellas basadas en la calificación
+const renderStars = (rating: number) => {
+  return Array.from({ length: 5 }, (_, i) => i < rating);
+};
+---
+
+<section
+  id="testimonios"
+  class="py-16 md:py-24 lg:py-32 relative overflow-hidden"
+>
+  <!-- Patrón de fondo -->
+  <div class="absolute inset-0 bg-background"></div>
+
+  <!-- Contenido principal -->
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="flex flex-col items-center text-center mb-12">
+      <!-- Ícono de Miranti -->
+      <img
+        src="/miranti/icon-black.svg"
+        alt="Miranti"
+        class="h-16 md:h-24 mb-6"
+      />
+
+      <!-- Encabezado con palabras destacadas -->
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6 max-w-2xl"
+      >
+        <span class="text-secondary-dark">Conectando</span> artesanos con el
+        <span class="text-secondary-dark">mercado digital</span> en todo el
+        <span class="text-secondary-dark">Perú</span>
+      </h2>
+
+      <!-- Línea decorativa -->
+      <div class="w-24 h-1 bg-secondary-dark rounded-full mb-8"></div>
+    </div>
+
+    <!-- Descripción introductoria -->
+    <div class="max-w-4xl mx-auto mb-16 text-center">
+      <p class="text-lg md:text-xl text-primary/80">
+        Miranti es una plataforma web diseñada para cerrar la brecha digital de
+        los artesanos y pequeños productores en todo el Perú, ofreciendo una
+        solución ligera, intuitiva y optimizada para conexiones variables.
+      </p>
+    </div>
+
+    <!-- Carrusel de testimonios -->
+<div class="mb-16">
+  <ul class="carousel mx-auto">
+    {testimonials.map((testimonial) => (
+      <li class=" min-w-[300px] w-full   py-6 snap-center">
+        <div class="bg-white  rounded-4xl border border-white/20 shadow-xl p-6 h-full flex flex-col">
+          <!-- Comillas decorativas -->
+          <div class="mb-4 text-secondary">
+            <Quote size={24} stroke-width={2} />
+          </div>
+          
+          <!-- Contenido del testimonio -->
+          <blockquote class="mb-6 flex-grow">
+            <p class="text-primary/80 italic">{testimonial.content}</p>
+          </blockquote>
+          
+          <!-- Estrellas de valoración -->
+          <div class="flex gap-1 mb-4">
+            {renderStars(testimonial.rating).map((isFilled) => (
+              <Star 
+                size={16} 
+                stroke-width={2} 
+                class={isFilled ? "text-secondary fill-secondary" : "text-secondary/30"} 
+              />
+            ))}
+          </div>
+          
+          <!-- Información del artesano -->
+          <div class="flex items-center gap-3 mt-auto">
+            <div class="h-12 w-12 rounded-full overflow-hidden bg-primary/5 border border-white/30 flex-shrink-0">
+              <img 
+                src={testimonial.image} 
+                alt={testimonial.name}
+                class="h-full w-full object-cover" 
+              />
+            </div>
+            <div>
+              <p class="font-bold text-primary">{testimonial.name}</p>
+              <p class="text-primary/70 text-sm">{testimonial.role}</p>
+            </div>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+</div>
+
+
+    <!-- CTA final -->
+    <div class="mt-16 text-center">
+      <a
+        href="#comofunciona"
+        class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-primary font-bold py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-105 border border-white/30 text-lg"
+      >
+        Únete a nuestra comunidad
+        <Users size={20} stroke-width={2} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+     scroll-behavior: smooth;
+    anchor-name: --carousel;
+    display: flex;
+    gap: 20px;
+    padding: 20px 40px;
+    mask: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > li {
+      scroll-snap-align: center;
+    }
+
+     
+  }
+
+  .carousel {
+  &::scroll-button(*) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-200%); 
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+     
+  }
+
+  &::scroll-button(right) {
+    position-area: inline-end center;
+    right: 30px; /* Posición desde el borde derecho */
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23312000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-right-icon lucide-arrow-big-right"><path d="M6 9h6V5l7 7-7 7v-4H6V9z"/></svg>') / 'Siguiente';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &::scroll-button(left) {
+    position-area: inline-start center;
+    left: 30px; /* Posición desde el borde izquierdo */
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23312000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-big-left-icon lucide-arrow-big-left"><path d="M18 15h-6v4l-7-7 7-7v4h6v6z"/></svg>') / 'Anterior';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+  .carousel {
+    scroll-marker-group: after;
+
+    &::scroll-marker-group {
+      position: fixed;
+      position-anchor: --carousel;
+      position-area: block-end center;
+      margin: 15px;
+
+       display: grid;
+       grid-auto-columns: 20px;
+       grid-auto-flow: column;
+    }
+
+    & > li::scroll-marker {
+      content: ' ';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(49, 32, 0, 0.3);
+
+      &:target-current {
+        background: var(--color-secondary);
+      }
+
+       
+    }
+  }
+</style>
