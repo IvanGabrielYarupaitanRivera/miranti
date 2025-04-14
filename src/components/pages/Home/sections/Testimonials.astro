@@ -1,6 +1,14 @@
 ---
 import { Users, Star, Quote } from "@lucide/astro";
-import { Image } from "astro:assets";
+import { Image } from "astro:assets"; 
+import mariaHuaman from "../../../../assets/images/miranti/testimonials/maria-huaman.webp";
+import juanQuispe from "../../../../assets/images/miranti/testimonials/juan-quispe.webp";
+import rosaMamani from "../../../../assets/images/miranti/testimonials/rosa-mamani.webp";
+import carlosHuayna from "../../../../assets/images/miranti/testimonials/carlos-huayna.webp";
+import luciaFlores from "../../../../assets/images/miranti/testimonials/lucia-flores.webp";
+import pedroCondori from "../../../../assets/images/miranti/testimonials/pedro-condori.webp";
+import anaPalomino from "../../../../assets/images/miranti/testimonials/ana-palomino.webp"; 
+import miguelSanchez from "../../../../assets/images/miranti/testimonials/miguel-sanchez.webp";
 
 // Datos de testimonios de artesanos
 const testimonials = [
@@ -8,7 +16,7 @@ const testimonials = [
     id: 1,
     name: "María Huamán",
     role: "Tejedora de Chinchero, Cusco",
-    image: "/miranti/testimonials/maria.webp",
+    image: mariaHuaman,
     content:
       "Antes solo vendía mis textiles cuando venían turistas a mi comunidad. Con Miranti, ahora tengo clientes de Lima y hasta del extranjero que me contactan directamente por WhatsApp. Mis ventas aumentaron un 40% en solo tres meses.",
     rating: 5,
@@ -17,7 +25,7 @@ const testimonials = [
     id: 2,
     name: "Juan Quispe",
     role: "Ceramista de Quinua, Ayacucho",
-    image: "/miranti/testimonials/juan.webp",
+    image: juanQuispe,
     content:
       "Mi señal de internet es muy débil, pero igual pude crear mi catálogo en Miranti. La plataforma carga rápido y no consume muchos datos. Ahora mis iglesias de cerámica llegan a todo el Perú sin tener que viajar a ferias.",
     rating: 4,
@@ -26,7 +34,7 @@ const testimonials = [
     id: 3,
     name: "Rosa Mamani",
     role: "Bordadora de Puno",
-    image: "/miranti/testimonials/rosa.webp",
+    image: rosaMamani,
     content:
       "Lo que más me gusta de Miranti es que puedo actualizar mi catálogo fácilmente desde mi celular. El soporte técnico me ayudó en mi idioma cuando tuve dudas al principio. Ha sido una bendición para mostrar mis bordados al mundo.",
     rating: 5,
@@ -35,7 +43,7 @@ const testimonials = [
     id: 4,
     name: "Carlos Huayna",
     role: "Tallador de madera, Cusco",
-    image: "/miranti/testimonials/carlos.webp",
+    image: carlosHuayna,
     content:
       "Llevo 30 años tallando máscaras tradicionales, pero solo vendía en ferias locales. Gracias a Miranti, ahora exporto a galerías de arte en Estados Unidos y España. La plataforma me ha permitido mostrar el proceso artesanal que hace único cada trabajo.",
     rating: 5,
@@ -44,7 +52,7 @@ const testimonials = [
     id: 5,
     name: "Lucía Flores",
     role: "Orfebre de plata, Cajamarca",
-    image: "/miranti/testimonials/lucia.webp",
+    image:luciaFlores,
     content:
       "Como mujer artesana en un campo dominado por hombres, me costaba ser reconocida. Con mi catálogo en Miranti, mis joyas de plata filigrana están llegando a clientes que valoran el trabajo manual. La plataforma es tan simple que hasta mi abuela podría usarla.",
     rating: 4,
@@ -53,7 +61,7 @@ const testimonials = [
     id: 6,
     name: "Pedro Condori",
     role: "Ceramista de Chulucanas, Piura",
-    image: "/miranti/testimonials/pedro.webp",
+    image: pedroCondori,
     content:
       "Mi cerámica negra de Chulucanas necesitaba llegar a más personas. Con Miranti no solo aumenté mis ventas, también conecté con otros artesanos para intercambiar técnicas. He podido mantener vivo este arte ancestral y sostener económicamente a mi familia.",
     rating: 5,
@@ -62,7 +70,7 @@ const testimonials = [
     id: 7,
     name: "Ana Palomino",
     role: "Productora de chocolate orgánico, San Martín",
-    image: "/miranti/testimonials/ana.webp",
+    image:anaPalomino,
     content:
       "Nuestro chocolate artesanal ahora llega a restaurantes de Lima gracias a Miranti. Lo que más aprecio es que puedo actualizar rápidamente el stock desde mi celular cuando estoy en la chacra donde cultivamos el cacao. ¡Nuestra producción ha crecido un 70%!",
     rating: 5,
@@ -71,7 +79,7 @@ const testimonials = [
     id: 8,
     name: "Miguel Sánchez",
     role: "Artesano de mates burilados, Junín",
-    image: "/miranti/testimonials/miguel.webp",
+    image:miguelSanchez,
     content:
       "Cada mate burilado cuenta una historia, y Miranti me permite explicar esos detalles a mis clientes. Mi hijo me ayudó a crear el catálogo, y ahora recibimos pedidos personalizados para regalos corporativos. La plataforma funciona bien incluso con la señal limitada de nuestra comunidad.",
     rating: 4,
@@ -153,7 +161,7 @@ const renderStars = (rating: number) => {
           <!-- Información del artesano -->
           <div class="flex items-center gap-3 mt-auto">
             <div class="h-12 w-12 rounded-full overflow-hidden bg-primary/5 border border-white/30 flex-shrink-0">
-              <img 
+              <Image 
                 src={testimonial.image} 
                 alt={testimonial.name}
                 class="h-full w-full object-cover" 
