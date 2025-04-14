@@ -1,0 +1,193 @@
+---
+import {
+  ArrowRight,
+  ChevronDown,
+  HelpCircle,
+  MessageSquare,
+  Package,
+  Package2,
+  Phone,
+  User,
+} from "@lucide/astro";
+---
+
+<section id="cta" class="py-16 md:py-24 lg:py-32 relative overflow-hidden">
+  <!-- Patrón de fondo -->
+  <div class="absolute inset-0 bg-background"></div>
+
+  <!-- Contenido principal -->
+  <div class="relative z-10 container mx-auto px-4 md:px-6">
+    <div class="flex flex-col items-center text-center mb-12">
+      <!-- Ícono de Miranti -->
+      <img
+        src="/miranti/icon-black.svg"
+        alt="Miranti"
+        class="h-16 md:h-24 mb-6"
+      />
+
+      <!-- Encabezado con palabras destacadas -->
+      <h2
+        class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary mb-6 max-w-2xl"
+      >
+        <span class="text-secondary-dark">Únete</span> a la comunidad de
+        <span class="text-secondary-dark">artesanos digitales</span> más grande del
+        <span class="text-secondary-dark">Perú</span>
+      </h2>
+
+      <!-- Línea decorativa -->
+      <div class="w-24 h-1 bg-secondary-dark rounded-full mb-8"></div>
+    </div>
+
+    <!-- Descripción introductoria -->
+    <div class="max-w-4xl mx-auto mb-16 text-center">
+      <p class="text-lg md:text-xl text-primary/80">
+        Con Miranti, crear tu catálogo digital toma solo minutos, no necesitas
+        conocimientos técnicos y te conectarás con clientes de todo el Perú y el
+        mundo. ¡El primer paso hacia tu éxito digital está a solo un clic de
+        distancia!
+      </p>
+    </div>
+
+    <!-- Formulario de contacto con estilo glasmórfico -->
+    <div class="max-w-lg mx-auto mb-16">
+      <form class="bg-white rounded-2xl border border-white/20 shadow-xl p-8">
+        <div class="space-y-6">
+          <!-- Campo Nombre -->
+          <div>
+            <label
+              for="nombre"
+              class="flex items-center gap-2 text-primary font-medium mb-2"
+            >
+              <User size={16} stroke-width={2} class="text-primary" />
+              Nombre completo
+            </label>
+            <div class="relative">
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                required
+                placeholder="María Huamán"
+                class="w-full px-4 py-3 bg-white rounded-2xl border border-primary text-primary placeholder:text-primary/50"
+              />
+            </div>
+          </div>
+
+          <!-- Campo WhatsApp -->
+          <div>
+            <label
+              for="whatsapp"
+              class="flex items-center gap-2 text-primary font-medium mb-2"
+            >
+              <Phone size={16} stroke-width={2} class="text-primary" />
+              WhatsApp
+            </label>
+            <div class="relative">
+              <span
+                class="absolute left-4 top-1/2 -translate-y-1/2 text-primary z-10"
+                >+51</span
+              >
+              <input
+                type="tel"
+                id="whatsapp"
+                name="whatsapp"
+                required
+                placeholder="999 999 999"
+                pattern="[0-9]{9}"
+                class="w-full pl-12 py-3 bg-white rounded-2xl border border-primary text-primary placeholder:text-primary/50"
+              />
+            </div>
+            <p class="text-xs text-primary/60 mt-1">
+              Te contactaremos a través de WhatsApp
+            </p>
+          </div>
+
+          <!-- Campo Tipo de Artesanía -->
+          <div>
+            <label
+              for="artesania"
+              class="flex items-center gap-2 text-primary font-medium mb-2"
+            >
+              <Package2 size={16} stroke-width={2} class="text-primary" />
+              Tipo de artesanía o producto
+            </label>
+            <div class="relative">
+              <select
+                id="artesania"
+                name="artesania"
+                required
+                class="w-full pl-4 pr-10 py-3 bg-white rounded-2xl border border-primary text-primary appearance-none"
+              >
+                <option value="" disabled selected
+                  >Selecciona tu especialidad</option
+                >
+                <option value="textil">Textilería</option>
+                <option value="ceramica">Cerámica</option>
+                <option value="joyeria">Joyería / Orfebrería</option>
+                <option value="madera">Tallado en madera</option>
+                <option value="productos-organicos">Productos orgánicos</option>
+                <option value="otros">Otros</option>
+              </select>
+              <div
+                class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none z-10"
+              >
+                <ChevronDown size={18} stroke-width={2} class="text-primary" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Campo Mensaje opcional -->
+          <div>
+            <label
+              for="mensaje"
+              class="flex items-center gap-2 text-primary font-medium mb-2"
+            >
+              <MessageSquare size={16} stroke-width={2} class="text-primary" />
+              Mensaje (opcional)
+            </label>
+            <div class="relative">
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="3"
+                placeholder="¿Tienes alguna pregunta específica?"
+                class="w-full px-4 py-3 bg-white rounded-2xl border border-primary text-primary placeholder:text-primary/50"
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Checkbox asistencia personalizada -->
+          <div>
+            <div class="flex items-start">
+              <div class="flex items-center h-5 mt-1">
+                <input
+                  id="asistencia"
+                  name="asistencia"
+                  type="checkbox"
+                  class="w-5 h-5 rounded border border-primary text-secondary bg-white focus:ring-0"
+                />
+              </div>
+              <div class="ml-3">
+                <label
+                  for="asistencia"
+                  class="flex items-center gap-2 text-primary"
+                >
+                  Quiero recibir asistencia personalizada
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón de envío -->
+          <button
+            type="submit"
+            class="w-full bg-secondary hover:bg-secondary/90 text-primary font-bold py-4 px-6 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] border border-white/30 text-lg flex items-center justify-center gap-2 cursor-pointer"
+          >
+            Comenzar ahora
+            <ArrowRight size={20} stroke-width={2} class="text-primary" />
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
