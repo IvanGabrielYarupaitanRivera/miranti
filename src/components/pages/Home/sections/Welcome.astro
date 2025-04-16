@@ -95,11 +95,11 @@ const animationDuration = "60s";
         {
           repeatedItems.map((item, index) =>
             item.type === "text" ? (
-              <span class="bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary  shadow-md   whitespace-nowrap flex-shrink-0">
+              <span class="bg-white/10 backdrop-blur-md text-primary rounded-full px-6 py-3 border border-primary    whitespace-nowrap flex-shrink-0">
                 {item.content}
               </span>
             ) : (
-              <span class="bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary  shadow-md flex items-center justify-center w-12 h-12 flex-shrink-0">
+              <span class="bg-white/10 backdrop-blur-md rounded-full p-3 border border-primary  flex items-center justify-center w-12 h-12 flex-shrink-0">
                 <item.content size={20} stroke-width={2} class="text-primary" />
               </span>
             )
