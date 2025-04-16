@@ -1,6 +1,9 @@
 ---
 import {
   ArrowRight,
+  Asterisk,
+  AsteriskIcon,
+  AsteriskSquare,
   ChevronDown,
   HelpCircle,
   MessageSquare,
@@ -48,146 +51,185 @@ import {
       </p>
     </div>
 
-    <!-- Formulario de contacto con estilo glasmórfico -->
-    <div class="max-w-lg mx-auto mb-16">
-      <form class="bg-white rounded-2xl border border-white/20 shadow-xl p-8">
-        <div class="space-y-6">
-          <!-- Campo Nombre -->
-          <div>
-            <label
-              for="nombre"
-              class="flex items-center gap-2 text-primary font-medium mb-2"
-            >
-              <User size={16} stroke-width={2} class="text-primary" />
-              Nombre completo
-            </label>
-            <div class="relative">
-              <input
-                type="text"
-                id="nombre"
-                name="nombre"
-                required
-                placeholder="María Huamán"
-                class="w-full px-4 py-3 bg-white rounded-2xl border border-primary text-primary placeholder:text-primary/50"
-              />
-            </div>
-          </div>
+    <!-- Formulario de contacto -->
+    <form
+      class="max-w-lg mx-auto mb-16
+      bg-white rounded-2xl border border-white/20
+      shadow-xl p-8 space-y-8"
+    >
+      <!-- Campo Nombre -->
+      <fieldset class="space-y-2">
+        <legend class="sr-only">Información Personal</legend>
 
-          <!-- Campo WhatsApp -->
-          <div>
-            <label
-              for="whatsapp"
-              class="flex items-center gap-2 text-primary font-medium mb-2"
-            >
-              <Phone size={16} stroke-width={2} class="text-primary" />
-              WhatsApp
-            </label>
-            <div class="relative">
-              <span
-                class="absolute left-4 top-1/2 -translate-y-1/2 text-primary z-10"
-                >+51</span
-              >
-              <input
-                type="tel"
-                id="whatsapp"
-                name="whatsapp"
-                required
-                placeholder="999 999 999"
-                pattern="[0-9]{9}"
-                class="w-full pl-12 py-3 bg-white rounded-2xl border border-primary text-primary placeholder:text-primary/50"
-              />
-            </div>
-            <p class="text-xs text-primary/60 mt-1">
-              Te contactaremos a través de WhatsApp
-            </p>
-          </div>
-
-          <!-- Campo Tipo de Artesanía -->
-          <div>
-            <label
-              for="artesania"
-              class="flex items-center gap-2 text-primary font-medium mb-2"
-            >
-              <Package2 size={16} stroke-width={2} class="text-primary" />
-              Tipo de artesanía o producto
-            </label>
-            <div class="relative">
-              <select
-                id="artesania"
-                name="artesania"
-                required
-                class="w-full pl-4 pr-10 py-3 bg-white rounded-2xl border border-primary text-primary appearance-none"
-              >
-                <option value="" disabled selected
-                  >Selecciona tu especialidad</option
-                >
-                <option value="textil">Textilería</option>
-                <option value="ceramica">Cerámica</option>
-                <option value="joyeria">Joyería / Orfebrería</option>
-                <option value="madera">Tallado en madera</option>
-                <option value="productos-organicos">Productos orgánicos</option>
-                <option value="otros">Otros</option>
-              </select>
-              <div
-                class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none z-10"
-              >
-                <ChevronDown size={18} stroke-width={2} class="text-primary" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Campo Mensaje opcional -->
-          <div>
-            <label
-              for="mensaje"
-              class="flex items-center gap-2 text-primary font-medium mb-2"
-            >
-              <MessageSquare size={16} stroke-width={2} class="text-primary" />
-              Mensaje (opcional)
-            </label>
-            <div class="relative">
-              <textarea
-                id="mensaje"
-                name="mensaje"
-                rows="3"
-                placeholder="¿Tienes alguna pregunta específica?"
-                class="w-full px-4 py-3 bg-white rounded-2xl border border-primary text-primary placeholder:text-primary/50"
-              ></textarea>
-            </div>
-          </div>
-
-          <!-- Checkbox asistencia personalizada -->
-          <div>
-            <div class="flex items-start">
-              <div class="flex items-center h-5 mt-1">
-                <input
-                  id="asistencia"
-                  name="asistencia"
-                  type="checkbox"
-                  class="w-5 h-5 rounded border border-primary text-secondary bg-white focus:ring-0"
-                />
-              </div>
-              <div class="ml-3">
-                <label
-                  for="asistencia"
-                  class="flex items-center gap-2 text-primary"
-                >
-                  Quiero recibir asistencia personalizada
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <!-- Botón de envío -->
-          <button
-            type="submit"
-            class="w-full bg-secondary hover:bg-secondary/90 text-primary font-bold py-4 px-6 rounded-full transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] border border-white/30 text-lg flex items-center justify-center gap-2 cursor-pointer"
+        <label
+          for="nombre"
+          class="flex items-center gap-2 text-primary"
+          id="nombre-label"
+        >
+          <User
+            size={16}
+            stroke-width={2}
+            class="text-primary"
+            aria-hidden="true"
+          />
+          <span
+            class="flex items-center gap-1"
+            title="Ingresa tu nombre completo para que podamos contactarte"
           >
-            Comenzar ahora
-            <ArrowRight size={20} stroke-width={2} class="text-primary" />
-          </button>
+            Nombre completo
+            <AsteriskIcon
+              size={16}
+              stroke-width={2}
+              class="text-red-500"
+              aria-hidden="true"
+            />
+          </span>
+        </label>
+
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          required
+          placeholder="María Huamán"
+          aria-labelledby="nombre-label"
+          aria-required="true"
+          autocomplete="name"
+          class="w-full px-4 py-3 bg-background shadow-lg rounded-2xl text-primary placeholder:text-primary/50"
+        />
+      </fieldset>
+
+      <!-- Campo WhatsApp -->
+      <fieldset class="space-y-2">
+        <legend class="sr-only">WhatsApp</legend>
+        <label
+          for="whatsapp"
+          class="flex items-center gap-2 text-primary"
+          id="whatsapp-label"
+        >
+          <Phone
+            size={16}
+            stroke-width={2}
+            class="text-primary"
+            aria-hidden="true"
+          />
+
+          <span
+            class="flex items-center gap-1"
+            title="Ingresa tu número de WhatsApp para que podamos contactarte"
+          >
+            WhatsApp
+            <AsteriskIcon
+              size={16}
+              stroke-width={2}
+              class="text-red-500"
+              aria-hidden="true"
+            />
+          </span>
+        </label>
+
+        <div class="relative">
+          <span
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-primary z-10"
+          >
+            +51
+          </span>
+          <input
+            type="tel"
+            id="whatsapp"
+            name="whatsapp"
+            required
+            placeholder="999 999 999"
+            pattern="[0-9]{9}"
+            aria-labelledby="whatsapp-label"
+            aria-required="true"
+            autocomplete="tel"
+            class="w-full pr-4 pl-12 py-3 bg-background shadow-lg rounded-2xl text-primary placeholder:text-primary/50"
+          />
         </div>
-      </form>
-    </div>
+      </fieldset>
+
+      <!-- Campo Tipo de Artesanía -->
+      <fieldset class="space-y-2">
+        <legend class="sr-only">Tipo de artesanía</legend>
+        <label
+          for="artesania"
+          class="flex items-center gap-2 text-primary"
+          id="artesania-label"
+        >
+          <Package2
+            size={16}
+            stroke-width={2}
+            class="text-primary"
+            aria-hidden="true"
+          />
+          <span
+            class="flex items-center gap-1"
+            title="Selecciona el tipo de artesanía o producto que ofreces"
+          >
+            Tipo de artesanía o producto
+            <AsteriskIcon
+              size={16}
+              stroke-width={2}
+              class="text-red-500"
+              aria-hidden="true"
+            />
+          </span>
+        </label>
+
+        <div class="relative">
+          <select
+            id="artesania"
+            name="artesania"
+            required
+            class="w-full pl-4 pr-12 py-3 bg-background shadow-lg rounded-2xl text-primary appearance-none"
+          >
+            <option value="" disabled selected>
+              Selecciona tu especialidad
+            </option>
+            <option value="textil">Textilería</option>
+            <option value="ceramica">Cerámica</option>
+            <option value="joyeria">Joyería / Orfebrería</option>
+            <option value="madera">Tallado en madera</option>
+            <option value="productos-organicos">Productos orgánicos</option>
+            <option value="otros">Otros</option>
+          </select>
+          <span
+            class="cursor-pointer absolute right-4 top-1/2 -translate-y-1/2 text-primary z-10"
+          >
+            <ChevronDown size={18} stroke-width={2} class="text-primary" />
+          </span>
+        </div>
+      </fieldset>
+
+      <!-- Checkbox asistencia personalizada -->
+      <fieldset class="flex items-center gap-2">
+        <legend class="sr-only">
+          Checkbox para la asistencia personalizada
+        </legend>
+        <input
+          type="checkbox"
+          name="asistencia-personalizada"
+          id="asistencia-personalizada"
+          class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+        />
+        <label
+          for="asistencia-personalizada"
+          class="flex items-center gap-2 text-primary"
+          id="asistencia-personalizada-label"
+        >
+          <span>Quiero asistencia personalizada</span>
+        </label>
+      </fieldset>
+
+      <!-- Botón de envío -->
+      <button
+        type="submit"
+        class="w-full bg-secondary hover:bg-secondary/90 text-primary py-4 px-6 rounded-full shadow-lg border border-white/30 flex items-center justify-center gap-2 cursor-pointer"
+      >
+        <span> Comenzar ahora </span>
+        <ArrowRight size={20} stroke-width={1} class="text-primary" />
+      </button>
+    </form>
   </div>
 </section>
