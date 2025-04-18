@@ -353,7 +353,7 @@ import {
   // Espera a que el DOM esté completamente cargado
   document.addEventListener("DOMContentLoaded", function () {
     // Obtén referencias a los elementos
-    const form = document.getElementById("artesanos-form");
+    const form = document.getElementById("artesanos-form") as HTMLFormElement;
     const formStatus = document.getElementById("form-status");
 
     // Solo adjunta el listener si el formulario existe
@@ -362,13 +362,18 @@ import {
         e.preventDefault();
 
         const formData = new FormData(this as HTMLFormElement);
-        const submitButton = this.querySelector('button[type="submit"]');
+        const submitButton = this.querySelector(
+          'button[type="submit"]'
+        ) as HTMLButtonElement;
+        const nombreValue = formData.get("nombre");
+        const nombre =
+          typeof nombreValue === "string" ? nombreValue : "Artesano";
 
         // Verifica que existan los elementos necesarios
-        if (!submitButton || !formStatus) return;
+        if (!submitButton) return;
 
         // Deshabilitar el botón y mostrar estado de carga
-        (submitButton as HTMLButtonElement).disabled = true;
+        submitButton.disabled = true;
         submitButton.innerHTML = "<span>Enviando...</span>";
 
         try {
@@ -377,38 +382,88 @@ import {
             body: formData,
           });
 
-          // Muestra el estado según la respuesta
-          formStatus.classList.remove("hidden");
-          const statusMessage = formStatus.querySelector("p");
-
-          if (statusMessage) {
-            if (response.ok) {
-              statusMessage.textContent =
-                "¡Gracias! Nos pondremos en contacto contigo pronto.";
-              statusMessage.className = "text-green-600 text-center";
-            } else {
-              statusMessage.textContent =
-                "Hubo un problema. Por favor, intenta nuevamente.";
-              statusMessage.className = "text-red-600 text-center";
-            }
+          if (response.ok) {
+            // Éxito: Transformamos el formulario en mensaje de confirmación
+            showSuccessMessage(form, nombre);
+          } else {
+            // Error: Mostramos mensaje de error dentro del formulario
+            showErrorMessage(
+              form,
+              formStatus,
+              "Hubo un problema al procesar tu solicitud. Por favor, intenta nuevamente."
+            );
+            submitButton.disabled = false;
+            submitButton.innerHTML =
+              '<span>Comenzar ahora</span> <svg class="w-5 h-5"><use xlink:href="#arrow-right"></use></svg>';
           }
         } catch (error) {
-          // Maneja errores de red
-          formStatus.classList.remove("hidden");
-          const statusMessage = formStatus.querySelector("p");
-
-          if (statusMessage) {
-            statusMessage.textContent =
-              "Error de conexión. Por favor, verifica tu internet.";
-            statusMessage.className = "text-red-600 text-center";
-          }
+          // Error de conexión
+          showErrorMessage(
+            form,
+            formStatus,
+            "Error de conexión. Por favor, verifica tu internet e intenta nuevamente."
+          );
+          submitButton.disabled = false;
+          submitButton.innerHTML =
+            '<span>Comenzar ahora</span> <svg class="w-5 h-5"><use xlink:href="#arrow-right"></use></svg>';
         }
-
-        // Restaurar el botón
-        (submitButton as HTMLButtonElement).disabled = false;
-        submitButton.innerHTML =
-          '<span> Comenzar ahora </span> <ArrowRight size={20} stroke-width={1} class="text-primary" />';
       });
+    }
+
+    // Función para mostrar mensaje de éxito interactivo
+    function showSuccessMessage(form: HTMLFormElement, nombre: string) {
+      // Guardamos la altura actual del formulario para evitar saltos
+      const formHeight = form.offsetHeight;
+
+      // Creamos el mensaje de confirmación con próximos pasos
+      const successContent = document.createElement("div");
+      successContent.className =
+        "text-center py-8 flex flex-col items-center justify-center";
+      successContent.style.minHeight = `${formHeight}px`;
+
+      successContent.innerHTML = `
+        
+          <div class="w-16 h-16 mb-6 bg-green-100 rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          
+          <h3 class="text-2xl font-serif font-bold text-primary mb-4">¡Gracias ${nombre}!</h3>
+          
+          <p class="text-primary/80 mb-6">
+            Tu información ha sido recibida correctamente. Uno de nuestros asesores se pondrá en contacto contigo a través de WhatsApp en las próximas 24-48 horas para guiarte en el proceso.
+          </p>
+                    
+            <a href="/" class="w-full bg-secondary hover:bg-secondary/90 text-primary py-4 px-6 rounded-full shadow-lg border border-white/30 flex items-center justify-center gap-2 cursor-pointer">
+              Volver al inicio
+            </a>
+        
+      `;
+
+      // Reemplazamos el formulario con el mensaje de éxito
+      form.innerHTML = "";
+      form.appendChild(successContent);
+    }
+
+    // Función para mostrar mensaje de error
+    function showErrorMessage(
+      form: HTMLFormElement,
+      formStatus: HTMLElement | null,
+      message: string
+    ) {
+      if (!formStatus) return;
+
+      formStatus.classList.remove("hidden");
+      const statusMessage = formStatus.querySelector("p");
+
+      if (statusMessage) {
+        statusMessage.textContent = message;
+        statusMessage.className = "text-red-600 text-center";
+
+        // Hacer que el mensaje sea bien visible
+        formStatus.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
   });
 </script>
