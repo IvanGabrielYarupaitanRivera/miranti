@@ -1,5 +1,10 @@
 ---
-import { Menu, HelpCircle, Settings, MessageCircle } from "@lucide/astro";
+import {
+  Menu,
+  HelpCircle,
+  MessageCircleHeartIcon,
+  CircleDollarSignIcon,
+} from "@lucide/astro";
 import MobileMenu from "./MobileMenu.astro";
 import NavLink from "./NavLink.astro";
 
@@ -7,31 +12,31 @@ import NavLink from "./NavLink.astro";
 const navItems = [
   {
     href: "#quees",
-    text: "¿Qué es Miranti?",
+    text: "Miranti",
     icon: HelpCircle,
     iconSize: 18,
-    iconStrokeWidth: 2
-  },
-  {
-    href: "#comofunciona",
-    text: "Cómo Funciona",
-    icon: Settings,
-    iconSize: 18,
-    iconStrokeWidth: 2
+    iconStrokeWidth: 2,
   },
   {
     href: "#testimonios",
     text: "Testimonios",
-    icon: MessageCircle,
+    icon: MessageCircleHeartIcon,
     iconSize: 18,
-    iconStrokeWidth: 2
-  }
+    iconStrokeWidth: 2,
+  },
+  {
+    href: "#price",
+    text: "Planes",
+    icon: CircleDollarSignIcon,
+    iconSize: 18,
+    iconStrokeWidth: 2,
+  },
 ];
 
 // Elemento CTA (Call-to-Action)
 const ctaItem = {
-  href: "#unete",
-  text: "Únete a Miranti"
+  href: "#cta",
+  text: "Únete a Miranti",
 };
 ---
 
@@ -46,15 +51,13 @@ const ctaItem = {
       <img src="/miranti/name.svg" alt="Miranti" class="h-6 md:h-8" />
     </a>
 
-  <!-- Menú desktop -->
+    <!-- Menú desktop -->
     <div class="hidden lg:flex items-center gap-2 lg:gap-4">
-      {navItems.map(item => (
-        <NavLink href={item.href} text={item.text} />
-      ))}
+      {navItems.map((item) => <NavLink href={item.href} text={item.text} />)}
       <NavLink href={ctaItem.href} text={ctaItem.text} isHighlighted={true} />
     </div>
 
-  <!-- Menú móvil - Botón toggle -->
+    <!-- Menú móvil - Botón toggle -->
     <button
       id="menu-toggle"
       class="lg:hidden text-white p-2 rounded-full hover:bg-white/10 transition-colors"
@@ -76,21 +79,21 @@ const ctaItem = {
     const menuClose = document.getElementById("menu-close");
     const mobileMenu = document.getElementById("mobile-menu");
     const navLinks = mobileMenu?.querySelectorAll("a");
-    
+
     // Función para controlar la apertura/cierre del menú
     function toggleMenu(isOpen: boolean) {
       if (!mobileMenu || !menuToggle) return;
-      
+
       // Actualizar visibilidad del menú
       if (isOpen) {
         mobileMenu.classList.remove("hidden");
       } else {
         mobileMenu.classList.add("hidden");
       }
-      
+
       // Actualizar atributos ARIA
       menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      
+
       // Manejar el foco
       if (isOpen && navLinks && navLinks.length > 0) {
         // Mover el foco al primer elemento del menú cuando se abre
@@ -102,7 +105,8 @@ const ctaItem = {
 
     // Controladores de eventos
     menuToggle?.addEventListener("click", () => {
-      const isCurrentlyHidden = mobileMenu?.classList.contains("hidden") ?? false;
+      const isCurrentlyHidden =
+        mobileMenu?.classList.contains("hidden") ?? false;
       toggleMenu(isCurrentlyHidden);
     });
 
@@ -111,7 +115,7 @@ const ctaItem = {
       // Devolver el foco al botón de toggle
       menuToggle?.focus();
     });
-    
+
     // Cerrar el menú con tecla ESC
     mobileMenu?.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
