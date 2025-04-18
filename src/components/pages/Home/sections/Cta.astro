@@ -6,6 +6,7 @@ import {
   AsteriskSquare,
   ChevronDown,
   HelpCircle,
+  MessageCircle,
   MessageSquare,
   Package,
   Package2,
@@ -53,9 +54,10 @@ import {
 
     <!-- Formulario de contacto -->
     <form
-      class="max-w-lg mx-auto mb-16
-      bg-white rounded-2xl border border-white/20
-      shadow-xl p-8 space-y-8"
+      id="artesanos-form"
+      action="https://hook.us1.make.com/6vrnnlwsfohcp4ln8dt1nt5ne9ocigzp"
+      method="POST"
+      class="max-w-lg mx-auto mb-16 bg-white rounded-2xl border border-white/20 shadow-xl p-8 space-y-8"
     >
       <!-- Campo Nombre -->
       <fieldset class="space-y-2">
@@ -91,9 +93,16 @@ import {
           id="nombre"
           name="nombre"
           required
+          title="Ingresa tu nombre completo usando solo letras y espacios"
+          minlength="3"
+          maxlength="50"
+          pattern="^[A-Za-záéíóúüñÁÉÍÓÚÜÑ']+( [A-Za-záéíóúüñÁÉÍÓÚÜÑ']+)*$"
+          inputmode="text"
           placeholder="María Huamán"
           aria-labelledby="nombre-label"
           aria-required="true"
+          oninvalid="this.setCustomValidity('Por favor, ingresa tu nombre completo usando solo letras')"
+          oninput="this.setCustomValidity('')"
           autocomplete="name"
           class="w-full px-4 py-3 bg-background shadow-lg rounded-2xl text-primary placeholder:text-primary/50"
         />
@@ -139,9 +148,15 @@ import {
             id="whatsapp"
             name="whatsapp"
             required
-            placeholder="999 999 999"
+            placeholder="987654321"
+            minlength="9"
+            maxlength="9"
             pattern="[0-9]{9}"
+            inputmode="numeric"
+            title="Ingresa exactamente 9 dígitos sin espacios ni otros caracteres"
             aria-labelledby="whatsapp-label"
+            oninvalid="this.setCustomValidity('Por favor, ingresa exactamente 9 dígitos sin espacios ni otros caracteres')"
+            oninput="this.setCustomValidity('')"
             aria-required="true"
             autocomplete="tel"
             class="w-full pr-4 pl-12 py-3 bg-background shadow-lg rounded-2xl text-primary placeholder:text-primary/50"
@@ -202,6 +217,50 @@ import {
         </div>
       </fieldset>
 
+      <!-- Campo de Mensaje -->
+      <fieldset class="space-y-2">
+        <legend class="sr-only">Mensaje complementario</legend>
+        <label
+          for="mensaje"
+          class="flex items-center gap-2 text-primary"
+          id="mensaje-label"
+        >
+          <MessageCircle
+            size={16}
+            stroke-width={2}
+            class="text-primary"
+            aria-hidden="true"
+          />
+          <span
+            class="flex items-center gap-1"
+            title="Escribe un mensaje adicional o pregunta que tengas"
+          >
+            Mensaje adicional
+            <AsteriskIcon
+              size={16}
+              stroke-width={2}
+              class="text-red-500"
+              aria-hidden="true"
+            />
+          </span>
+        </label>
+
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          required
+          title="Escribe un mensaje adicional o pregunta que tengas"
+          minlength="3"
+          maxlength="1000"
+          inputmode="text"
+          placeholder="Escribe aquí tu mensaje"
+          rows="4"
+          aria-labelledby="mensaje-label"
+          aria-required="true"
+          class="w-full px-4 py-3 bg-background shadow-lg rounded-2xl text-primary placeholder:text-primary/50 resize-none"
+        ></textarea>
+      </fieldset>
+
       <!-- Checkbox asistencia personalizada -->
       <fieldset class="flex items-center gap-2">
         <legend class="sr-only">
@@ -211,6 +270,7 @@ import {
           type="checkbox"
           name="asistencia-personalizada"
           id="asistencia-personalizada"
+          value="sí"
           class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
         />
         <label
@@ -221,6 +281,11 @@ import {
           <span>Quiero asistencia personalizada</span>
         </label>
       </fieldset>
+
+      <!-- Mensaje de estado (añadido) -->
+      <div id="form-status" class="hidden">
+        <p class="text-center"></p>
+      </div>
 
       <!-- Botón de envío -->
       <button
@@ -233,3 +298,67 @@ import {
     </form>
   </div>
 </section>
+
+<script>
+  // Espera a que el DOM esté completamente cargado
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtén referencias a los elementos
+    const form = document.getElementById("artesanos-form");
+    const formStatus = document.getElementById("form-status");
+
+    // Solo adjunta el listener si el formulario existe
+    if (form) {
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this as HTMLFormElement);
+        const submitButton = this.querySelector('button[type="submit"]');
+
+        // Verifica que existan los elementos necesarios
+        if (!submitButton || !formStatus) return;
+
+        // Deshabilitar el botón y mostrar estado de carga
+        (submitButton as HTMLButtonElement).disabled = true;
+        submitButton.innerHTML = "<span>Enviando...</span>";
+
+        try {
+          const response = await fetch((this as HTMLFormElement).action, {
+            method: "POST",
+            body: formData,
+          });
+
+          // Muestra el estado según la respuesta
+          formStatus.classList.remove("hidden");
+          const statusMessage = formStatus.querySelector("p");
+
+          if (statusMessage) {
+            if (response.ok) {
+              statusMessage.textContent =
+                "¡Gracias! Nos pondremos en contacto contigo pronto.";
+              statusMessage.className = "text-green-600 text-center";
+            } else {
+              statusMessage.textContent =
+                "Hubo un problema. Por favor, intenta nuevamente.";
+              statusMessage.className = "text-red-600 text-center";
+            }
+          }
+        } catch (error) {
+          // Maneja errores de red
+          formStatus.classList.remove("hidden");
+          const statusMessage = formStatus.querySelector("p");
+
+          if (statusMessage) {
+            statusMessage.textContent =
+              "Error de conexión. Por favor, verifica tu internet.";
+            statusMessage.className = "text-red-600 text-center";
+          }
+        }
+
+        // Restaurar el botón
+        (submitButton as HTMLButtonElement).disabled = false;
+        submitButton.innerHTML =
+          '<span> Comenzar ahora </span> <ArrowRight size={20} stroke-width={1} class="text-primary" />';
+      });
+    }
+  });
+</script>
