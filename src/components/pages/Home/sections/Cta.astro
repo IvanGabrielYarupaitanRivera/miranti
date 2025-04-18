@@ -1,6 +1,7 @@
 ---
 import {
   ArrowRight,
+  MailIcon,
   Asterisk,
   AsteriskIcon,
   AsteriskSquare,
@@ -59,6 +60,55 @@ import {
       method="POST"
       class="max-w-lg mx-auto mb-16 bg-white rounded-2xl border border-white/20 shadow-xl p-8 space-y-8"
     >
+      <!-- Campo Email -->
+      <fieldset class="space-y-2">
+        <legend class="sr-only">Correo Electrónico</legend>
+
+        <label
+          for="email"
+          class="flex items-center gap-2 text-primary"
+          id="email-label"
+        >
+          <MailIcon
+            size={16}
+            stroke-width={2}
+            class="text-primary"
+            aria-hidden="true"
+          />
+          <span
+            class="flex items-center gap-1"
+            title="Ingresa tu correo electrónico para que podamos contactarte"
+          >
+            Correo electrónico
+            <AsteriskIcon
+              size={16}
+              stroke-width={2}
+              class="text-red-500"
+              aria-hidden="true"
+            />
+          </span>
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          title="Ingresa un correo electrónico válido"
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          inputmode="email"
+          placeholder="Ingresa tu correo electrónico"
+          aria-labelledby="email-label"
+          aria-required="true"
+          oninvalid="this.setCustomValidity('Por favor, ingresa un correo electrónico válido')"
+          oninput="this.setCustomValidity('')"
+          autocomplete="email"
+          minlength="5"
+          maxlength="70"
+          class="w-full px-4 py-3 bg-background shadow-lg rounded-2xl text-primary placeholder:text-primary/50"
+        />
+      </fieldset>
+
       <!-- Campo Nombre -->
       <fieldset class="space-y-2">
         <legend class="sr-only">Información Personal</legend>
@@ -233,7 +283,7 @@ import {
           />
           <span
             class="flex items-center gap-1"
-            title="Escribe un mensaje adicional o pregunta que tengas"
+            title="Escribe un mensaje adicional o pregunta que tengas."
           >
             Mensaje adicional
             <AsteriskIcon
@@ -253,7 +303,7 @@ import {
           minlength="3"
           maxlength="1000"
           inputmode="text"
-          placeholder="Escribe aquí tu mensaje"
+          placeholder="Escribe aquí tu mensaje. Por ejemplo: Soy un artesano de Arequipa y me gustaría saber más sobre cómo funciona Miranti."
           rows="4"
           aria-labelledby="mensaje-label"
           aria-required="true"
